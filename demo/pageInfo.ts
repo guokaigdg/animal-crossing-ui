@@ -44,6 +44,10 @@ export const PAGE_INFO: Record<string, { title: string; desc: string }> = {
         title: 'Divider 分割线',
         desc: '分割线组件 — 装饰性分割线',
     },
+    background: {
+        title: 'Background 背景',
+        desc: '装饰背景组件 — 波点 / 圆柱形彩色针糖两种图案壁纸，随机散落无图片资源，可作为整页或区块背景，内容渲染在图案之上',
+    },
     icon: {
         title: 'Icon 图标',
         desc: '图标组件 — 动物主题图标集，包含 10 个可爱图标，支持自定义尺寸',

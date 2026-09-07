@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { Cursor } from '../src';
-import { islandGradient } from './gradients';
 import '../src/styles/index.less';
 import './fonts.css';
 import HomePage from './HomePage';
@@ -68,6 +67,7 @@ const MENU_ITEMS: MenuItem[] = [
             { key: 'tag', label: 'Tag 标签' },
             { key: 'cursor', label: 'Cursor 光标' },
             { key: 'codeblock', label: 'CodeBlock 代码高亮' },
+            { key: 'background', label: 'Background 背景', isNew: true },
             // { key: 'footer', label: 'Footer 页脚' },
         ],
     },
@@ -108,10 +108,10 @@ const MENU_ITEMS: MenuItem[] = [
             // 隐藏：暂不展示，恢复时取消注释
             // { key: 'collapse', label: 'Collapse 折叠面板' },
             // { key: 'tabs', label: 'Tabs 标签页' },
-            { key: 'table', label: 'Table 表格' },
+            // { key: 'table', label: 'Table 表格' },
             { key: 'pagination', label: 'Pagination 分页', isNew: true },
             // { key: 'typewriter', label: 'Typewriter 打字机' },
-            { key: 'image', label: 'Image 图片', isNew: true },
+            // { key: 'image', label: 'Image 图片' },
             { key: 'carousel', label: 'Carousel 轮播图', isNew: true },
         ],
     },
@@ -133,12 +133,20 @@ const S = {
         overflow: 'hidden',
         fontFamily:
             "Nunito, 'Noto Sans SC', 'Zen Maru Gothic', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
-        background: 'linear-gradient(180deg, #fdf8ec 0%, #f7ecd8 100%)',
+        // 波点壁纸（与首页 page 容器一致）：两层错位绿点 + 底色 #88c9a1
+        background: `
+            radial-gradient(circle, rgba(90, 160, 105, 0.4) 1.5px, transparent 1.5px) 0 0 / 28px 28px,
+            radial-gradient(circle, rgba(110, 180, 125, 0.3) 1px, transparent 1px) 7px 7px / 14px 14px,
+            #88c9a1
+        `,
     } as React.CSSProperties,
     sidebar: {
         width: 220,
         minWidth: 220,
-        background: 'linear-gradient(160deg, #e8f5d0 0%, #d3ecc8 50%, #bfe3f2 100%)',
+        // 拼色底部：雾蓝 #a2b0e7ff 色块，顶部为平滑正弦曲线（谷峰高 75px、谷底高 60px，较上版整体上移 20px），上部保持奶油色
+        background:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='130' viewBox='0 0 220 130'%3E%3Cpath fill='%23a2b0e7ff' d='M0 70 Q55 40 110 70 T220 70 V130 H0 Z'/%3E%3C/svg%3E\") left bottom / 220px 130px no-repeat",
+        backgroundColor: '#faf8f3',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
@@ -147,9 +155,6 @@ const S = {
         border: '2px solid rgba(250, 250, 250, 1)',
         boxShadow: '0 4px 16px rgba(61, 52, 40, 0.10)',
         height: 'calc(100dvh - 20px)',
-    } as React.CSSProperties,
-    homeBg: {
-        background: 'linear-gradient(180deg, #9fd8a8 0%, #7DC395 60%, #bfe3c4 100%)',
     } as React.CSSProperties,
     sidebarHeader: {
         padding: '20px 20px 12px',
@@ -164,7 +169,8 @@ const S = {
     menuList: {
         flex: 1,
         overflow: 'auto',
-        padding: '8px 0',
+        // 底部留白避开拼色曲线区（谷峰高约 75px）
+        padding: '8px 0 82px',
     } as React.CSSProperties,
     menuItem: (active: boolean) =>
         ({
@@ -217,8 +223,7 @@ const SidebarContent: React.FC<{
 }> = ({ activeKey, onNavigate }) => (
     <>
         <div style={S.sidebarHeader} onClick={() => onNavigate('/')}>
-            <img src={islandGradient} style={{ width: 24, height: 24, marginRight: 8, borderRadius: 6 }} alt="island" />
-            Island UI
+            Animal Island UI
         </div>
         <nav style={S.menuList}>
             {MENU_ITEMS.map((item) => {
@@ -340,7 +345,6 @@ const App: React.FC = () => {
                 <div
                     style={{
                         ...S.layout,
-                        ...S.homeBg,
                         justifyContent: 'center',
                     }}
                 >

@@ -1,6 +1,6 @@
 # 布局组件 —— 精确样式规范
 
-布局与结构类组件 Card、Title、Divider、Collapse、Tabs 的像素级样式规范。
+布局与结构类组件 Card、Title、Divider、Background、Collapse、Tabs 的像素级样式规范。
 
 ## Card
 
@@ -170,6 +170,49 @@ interface CarouselProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
 ```
 
 纯 CSS 实现，无图片资源：`line-*` 用 12px `conic-gradient` tile 画出三角锯齿带；`dashed-*` 用 `linear-gradient` 画 2px 破折线（12px 节奏，50% 实 / 50% 空）。
+
+## Background（图案壁纸）
+
+```tsx
+<Background type="dots" />        // 默认
+<Background type="sprinkles" />
+```
+
+```less
+.background {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    /* 默认 type=dots：两层错位圆点 + 纯色底 */
+    background:
+        radial-gradient(circle, rgba(90, 160, 90, 0.22) 1.5px, transparent 1.5px) 0 0 / 28px 28px,
+        radial-gradient(circle, rgba(140, 200, 140, 0.15) 1px, transparent 1px) 7px 7px / 14px 14px,
+        #bfe3bf;
+}
+.sprinkles {
+    /* 圆柱形糖针：圆角矩形（rx = 厚度一半）+ 共享高光渐变模拟圆柱受光；
+       三层互质内联 SVG tile（190×170 / 230×195 / 255×215，各 6 根糖针），
+       合计重复周期约 220000×280000px，远超任何屏幕，视觉上随机散落 */
+    background:
+        url("data:image/svg+xml,…tile A…") 0 0 / 190px 170px,
+        url("data:image/svg+xml,…tile B…") 45px 30px / 230px 195px,
+        url("data:image/svg+xml,…tile C…") 90px 60px / 255px 215px,
+        #fdf3e3;
+}
+```
+
+每个 tile 是一段内联 SVG（编码进 CSS，无外部图片文件），在固定的伪随机位置与角度盖 6 根糖针。一根糖针由共用同一 transform 的两个圆角矩形组成 —— 底色 + 竖向高光叠加层，呈现圆柱受光效果：
+
+```html
+<g transform='translate(18 26) rotate(24)'>
+    <rect width='17' height='4.6' rx='2.3' fill='#f8a6b2' />
+    <rect width='17' height='4.6' rx='2.3' fill='url(#s)' />
+</g>
+```
+
+- `dots`：绿色系壁纸 —— 两层错位波点（28px 大点、14px 小点）铺在 `#bfe3bf` 纯色底上。
+- `sprinkles`：甜甜圈糖霜底 `#fdf3e3`，撒 6 色圆柱形糖针（粉 `#f8a6b2` / 黄 `#f5d04a` / 蓝 `#8ecae6` / 绿 `#95d5b2` / 橙 `#f4a261` / 紫 `#c9a7f5`）。每根糖针是 13–18px 长、约 4.5px 粗的胶囊 —— 两端圆润、带高光受光、随机角度散落。三层互质 SVG tile（190×170、230×195、255×215）合计重复周期约 220000×280000px —— 远超任何屏幕，散落效果视觉上等同随机、无可感知重复。
+- 内容（children）渲染在图案之上；组件无固定高度，通过 `style`（`height` / `min-height`）控制尺寸。
 
 ## Collapse
 

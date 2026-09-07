@@ -1,23 +1,13 @@
 import React from 'react';
 import { Image, type ImageColor } from '../../../src';
 import { labelStyle, sectionStyle, sectionTitleStyle, DemoTag, ApiTable, ApiRow, CodeBlock } from '../../tools';
-import { islandGradient, flowersGradient, GRADIENTS } from '../../gradients';
+import forestCreek from '../../assets/photos/forest-creek.jpg';
+import sunnyField from '../../assets/photos/sunny-field.jpg';
+import lakeMorning from '../../assets/photos/lake-morning.jpg';
+import hillsideTown from '../../assets/photos/hillside-town.jpg';
 
-/** 渐变图池（本地生成，无外链） */
-const heroImages = Array.from({ length: 14 }, (_, i) => GRADIENTS[i % GRADIENTS.length]);
-
-/** Fisher-Yates 洗牌，返回打乱后的新数组 */
-const shuffle = <T,>(arr: T[]): T[] => {
-    const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-};
-
-/** 14 张图打乱后与 14 个颜色一一对应，不重复 */
-const shuffledImages = shuffle(heroImages);
+/** 演示照片池（demo 内置实拍图） */
+const photos = [forestCreek, sunnyField, lakeMorning, hillsideTown];
 
 const IMAGE_COLORS: { color: ImageColor; label: string }[] = [
     { color: 'white', label: 'White 白色' },
@@ -69,14 +59,14 @@ const ImageDemo: React.FC = () => (
         {/* 点击预览 */}
         <div style={labelStyle}>点击预览（preview 默认开启，点击图片弹出大图，ESC / 遮罩 / 关闭按钮均可关闭）</div>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-            <Image src={islandGradient} alt="点击预览大图" width={330} height={200} preview />
+            <Image src={forestCreek} alt="点击预览大图" width={330} height={200} preview />
         </div>
 
         {/* 基础用法 */}
         <div style={labelStyle}>基础用法（自定义宽高）</div>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-            <Image src={islandGradient} alt="示例图片 1" width={330} height={200} />
-            <Image src={flowersGradient} alt="示例图片 2" width={480} height={300} />
+            <Image src={forestCreek} alt="林间溪流" width={330} height={200} />
+            <Image src={sunnyField} alt="阳光田野" width={480} height={300} />
         </div>
 
         {/* 背景颜色 */}
@@ -84,7 +74,7 @@ const ImageDemo: React.FC = () => (
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
             {IMAGE_COLORS.map((c, i) => (
                 <div key={c.color} style={{ textAlign: 'center' }}>
-                    <Image src={shuffledImages[i]} alt={c.label} width={330} height={200} color={c.color} />
+                    <Image src={photos[i % photos.length]} alt={c.label} width={330} height={200} color={c.color} />
                     <div style={{ fontSize: 12, color: '#a0936e', marginTop: 6 }}>{c.label}</div>
                 </div>
             ))}
@@ -92,7 +82,7 @@ const ImageDemo: React.FC = () => (
 
         {/* 懒加载 */}
         <div style={labelStyle}>懒加载（lazy，滚动到视口附近才加载）</div>
-        <Image src={islandGradient} alt="懒加载图片" width={360} height={230} lazy />
+        <Image src={lakeMorning} alt="晨光湖面" width={360} height={230} lazy />
 
         {/* 错误占位 */}
         <div style={labelStyle}>错误占位（加载失败时显示占位）</div>

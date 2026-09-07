@@ -18,4 +18,12 @@ export const sceneryGradient = svgToDataUri(
     '<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#aee3f5"/><stop offset="100%" stop-color="#e8f7d4"/></linearGradient></defs><rect width="640" height="400" fill="url(#g)"/>'
 );
 
-export const GRADIENTS = [islandGradient, flowersGradient, sceneryGradient];
+export const coralGradient = svgToDataUri(
+    '<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f9c58d"/><stop offset="100%" stop-color="#f4978e"/></linearGradient></defs><rect width="640" height="400" fill="url(#g)"/>'
+);
+
+export const mintGradient = svgToDataUri(
+    '<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a8e6cf"/><stop offset="100%" stop-color="#5fb8a5"/></linearGradient></defs><rect width="640" height="400" fill="url(#g)"/>'
+);
+
+export const GRADIENTS = [islandGradient, flowersGradient, sceneryGradient, coralGradient, mintGradient];

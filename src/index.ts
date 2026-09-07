@@ -34,6 +34,9 @@ export type { CursorProps, CursorType } from './components/Cursor';
 export { Divider } from './components/Divider';
 export type { DividerProps } from './components/Divider';
 
+export { Background } from './components/Background';
+export type { BackgroundProps, BackgroundType } from './components/Background';
+
 export { Typewriter } from './components/Typewriter';
 export type { TypewriterProps } from './components/Typewriter';
 

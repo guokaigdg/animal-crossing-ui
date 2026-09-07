@@ -1,7 +1,9 @@
 import React from 'react';
 import { Carousel } from '../../../src';
 import { ApiRow, ApiTable, CodeBlock, DemoTag, labelStyle, sectionStyle, sectionTitleStyle } from '../../tools';
-import { islandGradient, flowersGradient, sceneryGradient } from '../../gradients';
+import hillsideTown from '../../assets/photos/hillside-town.jpg';
+import sunnyField from '../../assets/photos/sunny-field.jpg';
+import forestCreek from '../../assets/photos/forest-creek.jpg';
 
 const CAROUSEL_API: ApiRow[] = [
     { prop: 'children', desc: '每个直接子元素为一张', type: 'ReactNode', defaultVal: '-', required: true },
@@ -17,9 +19,9 @@ const CAROUSEL_API: ApiRow[] = [
 ];
 
 const slides = [
-    { src: islandGradient, title: '海岛晨光', desc: '晨雾散去，海面泛起层层波光。' },
-    { src: flowersGradient, title: '花园漫步', desc: '在盛开的花丛间享受午后时光。' },
-    { src: sceneryGradient, title: '远山如黛', desc: '远山与天空在渐变色里相遇。' },
+    { src: hillsideTown, title: '山坡小筑', desc: '沿坡而建的小镇，屋顶连成一片暖色。' },
+    { src: sunnyField, title: '阳光田野', desc: '风掠过田野，草浪一层层推向天边。' },
+    { src: forestCreek, title: '林间溪流', desc: '溪水绕过青石，树影在水面上摇晃。' },
 ];
 
 const CarouselDemo: React.FC = () => (

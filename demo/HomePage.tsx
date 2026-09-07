@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Divider, Button, Typewriter } from '../src';
-import { islandGradient, flowersGradient, sceneryGradient } from './gradients';
+import { Card, Button, Typewriter } from '../src';
+import { islandGradient, flowersGradient, sceneryGradient, coralGradient, mintGradient } from './gradients';
 import { useIsMobile } from './tools';
 
 // ============================================
@@ -119,9 +119,16 @@ const S = {
         minHeight: '100vh',
         overflowY: 'auto',
         overflowX: 'hidden',
+        // 波点壁纸铺在滚动容器上 + fixed：滚动时背景固定，任何滚动位置都不丢失
+        background: `
+            radial-gradient(circle, rgba(90, 160, 105, 0.4) 1.5px, transparent 1.5px) 0 0 / 28px 28px,
+            radial-gradient(circle, rgba(110, 180, 125, 0.3) 1px, transparent 1px) 7px 7px / 14px 14px,
+            #88c9a1
+        `,
+        backgroundAttachment: 'fixed',
     } as React.CSSProperties,
 
-    // Hero
+    // Hero（背景由 page 容器统一提供）
     hero: {
         display: 'flex',
         flexDirection: 'column',
@@ -310,7 +317,7 @@ const S = {
 // ============================================
 const features = [
     {
-        icon: islandGradient,
+        icon: coralGradient,
         title: '治愈系风格',
         desc: 'SVG 有机形状裁切，3D 按压按钮，温暖质朴的自然 UI 质感',
     },
@@ -325,7 +332,7 @@ const features = [
         desc: '40+ CSS 自定义属性，运行时换肤无需重新构建',
     },
     {
-        icon: islandGradient,
+        icon: mintGradient,
         title: '开箱即用',
         desc: 'ESM + CJS 双格式输出，TypeScript 类型声明完整',
     },
@@ -359,6 +366,7 @@ const components = [
     },
     { key: 'card', name: 'Card', desc: '默认/标题两种卡片风格' },
     { key: 'codeblock', name: 'CodeBlock', desc: '代码语法高亮组件' },
+    { key: 'background', name: 'Background', desc: '波点 / 圆柱形彩色针糖装饰背景' },
     { key: 'image', name: 'Image', desc: '白色衬板图片，支持懒加载 / 点击预览' },
     { key: 'carousel', name: 'Carousel', desc: '自动播放、箭头/圆点与键盘导航' },
 ];
@@ -410,11 +418,11 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                     Animal <br /> Island UI
                                 </>
                             )}
-                            <span style={S.heroVersion}>v1.7.0</span>
+                            <span style={S.heroVersion}>v1.9.0</span>
                         </h1>
                         <Typewriter speed={60}>
                             <p style={{ ...S.heroSubtitle, fontSize: isMobile ? 14 : 17 }}>
-                                治愈系海岛风格的 React 组件库，基于 TypeScript + Vite 构建，让 Web 应用充满温暖质感
+                                Kawaii 风格的 React 组件库，基于 TypeScript + Vite 构建，让 Web 应用充满温暖质感
                             </p>
                         </Typewriter>
                         {/* 暂时隐藏：恢复时去掉 display: 'none' */}
@@ -486,8 +494,6 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 </div>
             </div>
 
-            <Divider style={{ width: isMobile ? '90%' : 800, margin: '0 auto' }} />
-
             {/* Components */}
             <div style={{ ...S.section, padding: isMobile ? '32px 16px' : '48px 40px' }}>
                 <div style={S.sectionTitle}>组件一览</div>
@@ -502,16 +508,12 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 </div>
             </div>
 
-            <Divider style={{ width: isMobile ? '90%' : 800, margin: '0 auto' }} />
-
             {/* Install */}
             <div style={{ ...S.section, padding: isMobile ? '32px 16px' : '48px 40px' }}>
                 <div style={S.sectionTitle}>安装</div>
                 <div style={S.sectionDesc}>一行命令即可安装</div>
                 <CodeBlock code={`// 使用 npm 安装\nnpm install animal-island-ui`} />
             </div>
-
-            <Divider style={{ width: isMobile ? '90%' : 800, margin: '0 auto' }} />
 
             {/* Quick Start */}
             <div style={{ ...S.section, padding: isMobile ? '32px 16px' : '48px 40px' }}>
@@ -521,8 +523,6 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     code={`// 1. 引入组件\nimport { Button, Modal, Switch } from 'animal-island-ui';\nimport 'animal-island-ui/style';\n\nfunction App() {\n    return <Button>开始</Button>;\n}`}
                 />
             </div>
-
-            <Divider style={{ width: isMobile ? '90%' : 800, margin: '0 auto' }} />
 
             {/* Theme */}
             <div style={{ ...S.section, padding: isMobile ? '32px 16px' : '48px 40px' }}>

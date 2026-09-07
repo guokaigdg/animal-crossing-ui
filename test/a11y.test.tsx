@@ -34,6 +34,7 @@ import axe from 'axe-core';
 import React from 'react';
 
 import { Button } from '@/components/Button';
+import { Background } from '@/components/Background';
 import { Card } from '@/components/Card';
 import { Checkbox } from '@/components/Checkbox';
 import { CodeBlock } from '@/components/CodeBlock';
@@ -137,6 +138,11 @@ describe('a11y smoke / 全组件 axe-core 自动检查', () => {
     it('Button', async () => {
         const r = render(<Button>确认</Button>);
         await expectNoA11yViolations(containerOf(r), 'Button');
+    });
+
+    it('Background (装饰背景容器)', async () => {
+        const r = render(<Background type="sprinkles">内容</Background>);
+        await expectNoA11yViolations(containerOf(r), 'Background');
     });
 
     it('Icon (无 aria-label 应有 violation，提示需要补)', async () => {

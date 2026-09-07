@@ -89,6 +89,26 @@ interface DividerProps {
 
 Height fixed at 12px. Purely decorative band drawn with CSS gradients only (conic-gradient zigzag for `line-*`, linear-gradient dashes for `dashed-*`) — no image assets. No `orientation` / `dashed` / `plain` / children — for a vertical separator, use a CSS `border-left` on adjacent elements.
 
+## Background
+
+```ts
+type BackgroundType = 'dots' | 'sprinkles';
+
+interface BackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+    type?: BackgroundType; // default 'dots'
+    children?: React.ReactNode;
+}
+```
+
+```tsx
+<Background type="dots" style={{ height: 200 }} />
+<Background type="sprinkles" style={{ minHeight: 200, padding: 24 }}>
+    <p>Content renders above the pattern</p>
+</Background>
+```
+
+Full-bleed decorative wallpaper with zero image assets: `dots` is a two-layer offset polka-dot pattern on green `#bfe3bf`; `sprinkles` scatters 6-color cylindrical candy sprinkles (capsule rods with highlight shading) on frosting `#fdf3e3` — three mutually-prime inline-SVG tiles make the scatter read as random with no visible repeat. No fixed height — set `height` / `min-height` via `style`.
+
 ## Collapse
 
 ```ts

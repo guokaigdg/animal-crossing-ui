@@ -1,6 +1,6 @@
 # Layout — pixel spec
 
-Pixel-level styling for the layout and structural components: Card, Title, Divider, Collapse and Tabs.
+Pixel-level styling for the layout and structural components: Card, Title, Divider, Background, Collapse and Tabs.
 
 ## Card
 
@@ -170,6 +170,50 @@ Example:
 ```
 
 Pure CSS, no image assets: `line-*` types draw a triangular zigzag band with a 12px `conic-gradient` tile; `dashed-*` types draw a 2px dashed rule via `linear-gradient` (12px rhythm, 50% on / 50% off).
+
+## Background (pattern wallpaper)
+
+```tsx
+<Background type="dots" />        // default
+<Background type="sprinkles" />
+```
+
+```less
+.background {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    /* default type=dots: two offset dot layers + solid base */
+    background:
+        radial-gradient(circle, rgba(90, 160, 90, 0.22) 1.5px, transparent 1.5px) 0 0 / 28px 28px,
+        radial-gradient(circle, rgba(140, 200, 140, 0.15) 1px, transparent 1px) 7px 7px / 14px 14px,
+        #bfe3bf;
+}
+.sprinkles {
+    /* capsule sprinkles: rounded rect (rx = half thickness) + shared highlight
+       gradient = cylinder shading; three mutually-prime inline-SVG tiles
+       (190×170 / 230×195 / 255×215, 6 capsules each) give a combined repeat
+       period of ~220000×280000px — beyond any screen, reads as random */
+    background:
+        url("data:image/svg+xml,…tile A…") 0 0 / 190px 170px,
+        url("data:image/svg+xml,…tile B…") 45px 30px / 230px 195px,
+        url("data:image/svg+xml,…tile C…") 90px 60px / 255px 215px,
+        #fdf3e3;
+}
+```
+
+Each tile is an inline SVG (encoded into the CSS — no external image file) stamping 6 capsules at fixed pseudo-random positions and angles. One capsule is two rounded rects sharing a transform — base color plus a vertical highlight overlay that shades it like a lit cylinder:
+
+```html
+<g transform='translate(18 26) rotate(24)'>
+    <rect width='17' height='4.6' rx='2.3' fill='#f8a6b2' />
+    <rect width='17' height='4.6' rx='2.3' fill='url(#s)' />
+</g>
+```
+
+- `dots`: green wallpaper — two offset polka-dot layers (28px big dots, 14px small dots) over `#bfe3bf`.
+- `sprinkles`: doughnut frosting `#fdf3e3` scattered with cylindrical candy sprinkles in 6 colors (pink `#f8a6b2` / yellow `#f5d04a` / blue `#8ecae6` / green `#95d5b2` / orange `#f4a261` / purple `#c9a7f5`). Each sprinkle is a capsule 13–18px long × ~4.5px thick — rounded ends, highlight shading, rotated at scattered angles. Three mutually-prime SVG tiles (190×170, 230×195, 255×215) yield a combined repeat period of ~220000×280000px — beyond any screen, so the scatter reads as random with no visible repetition.
+- Content (children) renders above the pattern; size the element via `style` (`height` / `min-height`) — it has no built-in fixed height.
 
 ## Collapse
 

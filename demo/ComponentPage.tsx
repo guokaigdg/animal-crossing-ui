@@ -27,6 +27,7 @@ import CursorDemo from './components/Cursor';
 import ModalDemo from './components/Modal';
 import TypewriterDemo from './components/Typewriter';
 import DividerDemo from './components/Divider';
+import BackgroundDemo from './components/Background';
 import SelectDemo from './components/Select';
 import DatePickerDemo from './components/DatePicker';
 import TimePickerDemo from './components/TimePicker';
@@ -56,6 +57,7 @@ const PAGES: Record<string, React.FC> = {
     drawer: DrawerDemo,
     typewriter: TypewriterDemo,
     'divider-comp': DividerDemo,
+    background: BackgroundDemo,
     icon: IconDemo,
     select: SelectDemo,
     'date-picker': DatePickerDemo,
