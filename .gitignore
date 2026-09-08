@@ -48,19 +48,3 @@ coverage/
 *.tmp
 *.temp
 .npmrc
-
-# Images — copyright policy: this repository stays image-free (use CSS/SVG instead)
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.gif
-*.ico
-*.bmp
-*.tif
-*.tiff
-# 例外：demo 站内置实拍图（本地开发/部署需要）
-!demo/assets/photos/*.jpg
-!demo/assets/photos/*.jpeg
-!demo/assets/photos/*.png
-!demo/assets/photos/*.webp
