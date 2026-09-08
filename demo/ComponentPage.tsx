@@ -15,6 +15,7 @@ import FormDemo from './components/Form';
 import TagDemo from './components/Tag';
 import NotificationDemo from './components/Notification';
 import ProgressDemo from './components/Progress';
+import LoadingDemo from './components/Loading';
 import SkeletonDemo from './components/Skeleton';
 import BackTopDemo from './components/BackTop';
 import ImageDemo from './components/Image';
@@ -32,6 +33,7 @@ import SelectDemo from './components/Select';
 import DatePickerDemo from './components/DatePicker';
 import TimePickerDemo from './components/TimePicker';
 import CountdownDemo from './components/Countdown';
+import TimeDemo from './components/Time';
 import CarouselDemo from './components/Carousel';
 import SkillDemo from './components/Skill';
 import { PAGE_INFO } from './pageInfo';
@@ -73,11 +75,13 @@ const PAGES: Record<string, React.FC> = {
     tag: TagDemo,
     notification: NotificationDemo,
     progress: ProgressDemo,
+    loading: LoadingDemo,
     form: FormDemo,
     skeleton: SkeletonDemo,
     backtop: BackTopDemo,
     image: ImageDemo,
     countdown: CountdownDemo,
+    time: TimeDemo,
     carousel: CarouselDemo,
     skill: SkillDemo,
 };

@@ -120,6 +120,9 @@ export type {
 export { Progress } from './components/Progress';
 export type { ProgressProps, ProgressSize, ProgressInfoPosition } from './components/Progress';
 
+export { Loading } from './components/Loading';
+export type { LoadingProps } from './components/Loading';
+
 // ============================================
 // 新增组件
 // ============================================
@@ -140,6 +143,9 @@ export type { ImageProps, ImageColor } from './components/Image';
 
 export { Countdown } from './components/Countdown';
 export type { CountdownProps, CountdownSize, CountdownVariant } from './components/Countdown';
+
+export { Time } from './components/Time';
+export type { TimeProps } from './components/Time';
 
 export { Carousel } from './components/Carousel';
 export type { CarouselProps } from './components/Carousel';

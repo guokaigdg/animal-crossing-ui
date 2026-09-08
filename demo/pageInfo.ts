@@ -108,6 +108,10 @@ export const PAGE_INFO: Record<string, { title: string; desc: string }> = {
         title: 'Progress 进度条',
         desc: '斜纹滚动进度条 —  3 档 size, 支持 inside/right/top 三种文字位置、自定义格式化、duration 控制 fill 宽度动画',
     },
+    loading: {
+        title: 'Loading 加载',
+        desc: '全屏落雪加载指示器 — 50 片随机雪花旋转飘落 + 暗角夜空，中央提示文字、delay 防闪烁，结束时渐变消失',
+    },
     form: {
         title: 'Form 表单',
         desc: '表单组件 — 支持 useForm 命令式实例、多种校验规则、三种布局（horizontal / vertical / inline）、labelCol / wrapperCol 网格',
@@ -127,6 +131,10 @@ export const PAGE_INFO: Record<string, { title: string; desc: string }> = {
     countdown: {
         title: 'Countdown 倒计时',
         desc: '倒计时组件 — 接收结束时间，支持天/时/分/秒格式、三种尺寸、两种风格与归零回调',
+    },
+    time: {
+        title: 'Time 时钟',
+        desc: '时间显示组件 — HUD 风格的卡片，实时显示星期、月日与 HH:MM，每秒自动刷新，冒号闪烁与入场动画',
     },
     carousel: {
         title: 'Carousel 轮播图',

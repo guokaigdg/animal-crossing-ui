@@ -42,8 +42,10 @@ import { Carousel } from '@/components/Carousel';
 import { Collapse } from '@/components/Collapse';
 import { Cursor } from '@/components/Cursor';
 import { Countdown } from '@/components/Countdown';
+import { Time } from '@/components/Time';
 import { DatePicker } from '@/components/DatePicker';
 import { Divider } from '@/components/Divider';
+import { Loading } from '@/components/Loading';
 import { Drawer } from '@/components/Drawer';
 import { Footer } from '@/components/Footer';
 import { Form, FormItem } from '@/components/Form';
@@ -312,6 +314,11 @@ describe('a11y smoke / 全组件 axe-core 自动检查', () => {
         await expectNoA11yViolations(containerOf(r), 'Progress');
     });
 
+    it('Loading (带 tip 全屏落雪)', async () => {
+        const r = render(<Loading tip="努力加载中" />);
+        await expectNoA11yViolations(containerOf(r), 'Loading');
+    });
+
     it('Title (有 children 文案)', async () => {
         const r = render(<Title>标题文案</Title>);
         await expectNoA11yViolations(containerOf(r), 'Title');
@@ -349,6 +356,11 @@ describe('a11y smoke / 全组件 axe-core 自动检查', () => {
     it('Countdown (有可见倒计时)', async () => {
         const r = render(<Countdown value={Date.now() + 60_000} prefix="活动结束还有" />);
         await expectNoA11yViolations(containerOf(r), 'Countdown');
+    });
+
+    it('Time (有可见时钟文本)', async () => {
+        const r = render(<Time />);
+        await expectNoA11yViolations(containerOf(r), 'Time');
     });
 
     it('Carousel (有可见图片说明)', async () => {

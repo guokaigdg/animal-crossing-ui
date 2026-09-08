@@ -353,6 +353,7 @@ const components = [
     { key: 'checkbox', name: 'Checkbox', desc: '多选框组件，支持水平/垂直排列' },
     { key: 'date-picker', name: 'DatePicker', desc: '日期选择与范围选择，年/月/日面板、禁用日期、键盘导航' },
     { key: 'time-picker', name: 'TimePicker', desc: '时间选择，时/分/秒滚选、此刻/确定、步进' },
+    { key: 'time', name: 'Time', desc: '实时时钟卡片，星期 + 月日 + HH:MM 每秒刷新' },
     {
         key: 'pagination',
         name: 'Pagination',
@@ -364,6 +365,7 @@ const components = [
         name: 'Notification',
         desc: '命令式通知，4 种 type × 6 个 position',
     },
+    { key: 'loading', name: 'Loading', desc: '全屏落雪，结束渐变消失' },
     { key: 'card', name: 'Card', desc: '默认/标题两种卡片风格' },
     { key: 'codeblock', name: 'CodeBlock', desc: '代码语法高亮组件' },
     { key: 'background', name: 'Background', desc: '波点 / 圆柱形彩色针糖装饰背景' },

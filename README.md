@@ -1,8 +1,11 @@
 # Animal-Island-UI
 
+<br/>
 <div align="center">
     <img src="./docs/img/readme-logo.png" alt="animal-island-ui" style="border-radius: 24px; width: 125px; display: block; margin: 0 auto 24px;" />
 </div>
+<br/>
+
 <div align="center">
 A React UI component library with a cute style
 </div>
