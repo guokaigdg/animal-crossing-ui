@@ -87,6 +87,86 @@ interface ProgressProps {
 - a11y：根 div 有 `role="progressbar"` + `aria-valuemin=0/aria-valuemax=100/aria-valuenow=<四舍五入后的 percent>/aria-valuetext=<infoFormat 的字符串结果>`。
 - `prefers-reduced-motion: reduce` 时所有动画自动关闭。
 
+## Loading（全屏落雪）
+
+源码：`src/components/Loading/Loading.tsx` + `types.ts` + `loading.module.less`。
+全屏夜空落雪：50 片白色圆点雪花（1–6px 随机尺寸与位置）从视口上方旋转飘落，每片拥有独立的 6–12s 线性时长与负延迟，首屏即刻铺满。`active` 变为 false 时整体按 `fadeDuration` 秒渐变消失，随后卸载。
+
+**props**：
+```ts
+interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
+    active?: boolean;       // true/false toggles the screen; default true; false → fade out then unmount
+    tip?: React.ReactNode;  // centred caption over the snowfall; falls back to a visually-hidden 加载中
+    delay?: number;         // ms before the screen appears; default 0; re-arms on every active→true transition
+    fadeDuration?: number;  // fade-out duration in seconds; default 0.6
+    zIndex?: number;        // default 3000 (above Notification's 2000)
+}
+```
+
+**Screen（精确值）：**
+```css
+.loading {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: #0b101a;               /* night-sky base */
+    opacity: 1;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: animal-loading-fade-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.loading.exiting {                    /* fade-out state */
+    opacity: 0;
+    pointer-events: none;
+    /* inline transition-duration: <fadeDuration>s set from the prop */
+}
+```
+
+**落雪（50 片雪花）：**
+```css
+.snow {                                /* aria-hidden wrapper */
+    position: absolute;
+    inset: 0;
+}
+.flake {
+    position: absolute;
+    top: -30px;                        /* starts above the viewport */
+    background: #fff;
+    border-radius: 50%;
+    animation: animal-loading-snow 10s linear infinite;
+    /* per-flake inline style (generated once per mount via useMemo):
+       width/height: Math.random() * 5 + 1 px        (1–6px)
+       left: Math.random() * 100 %
+       animationDuration: Math.random() * 6 + 6 s    (6–12s, overrides the 10s above)
+       animationDelay: -(Math.random() * duration) s (negative → starts mid-cycle,
+                                                       so the first frame is already full of snow) */
+}
+
+@keyframes animal-loading-snow {
+    0%   { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(calc(100vh + 60px)) rotate(360deg); }
+}
+```
+
+**暗角 / 提示文字：**
+```css
+.vignette {
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(5,10,20,0.6) 100%);
+}
+.tip {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center; padding: 0 24px;
+    color: #f8f8f0; font-weight: 800; font-size: 18px;
+    letter-spacing: 0.04em; line-height: 1.5; text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+```
+
+**关键交互细节：**
+- **退出时序**：`active` → false 时落雪保持挂载并加 `exiting` 类（opacity → 0、`pointer-events: none`），`fadeDuration * 1000` 毫秒计时结束后卸载。淡出途中恢复 `active` 会取消计时器并立即回到不透明。
+- `delay` 在每次 `active` 切换为 `true` 时重新计时，加载快速结束时雪花屏不会闪烁。
+- a11y：根元素带 `role="status"`；落雪包裹层与暗角均 `aria-hidden`；无 `tip` 时用视觉隐藏的 `加载中` span 提供可读内容。
+- `prefers-reduced-motion: reduce` 停止飘落与进入动画；opacity 渐隐不属于位移运动，予以保留。
+
 ## Skeleton（流光占位）
 
 源码：`src/components/Skeleton/Skeleton.tsx` + `skeleton.module.less`。
@@ -160,11 +240,11 @@ SkeletonAvatarProps { size?: 'small'|'middle'|'large'; shape?: 'circle'|'square'
 - paragraph 模式最后一行默认宽 60%（可通 `rowWidths` 覆盖）。
 - `aria-hidden` 屏蔽屏幕阅读器。
 
-## BackTop（徽章返回顶部）
+## BackTop（上箭头返回顶部）
 
 源码：`src/components/BackTop/BackTop.tsx` + `back-top.module.less`。
 
-固定右下角的返回顶部按钮，默认使用原创徽章 SVG（内联 data URI），点击后 easeInOutQuad 平滑滚动到顶部。
+固定右下角的返回顶部按钮，默认使用原创贴纸风上箭头 SVG（内联 data URI：暖棕 `#c9a06c` 描边 + 奶油 `#fffdf4` 糖霜层 + 青绿 `#19c8b9` 主体带浅青 `#7fe0d4` 高光），点击后 easeInOutQuad 平滑滚动到顶部。
 
 **props**：
 ```ts
@@ -195,25 +275,24 @@ opacity: 1;
 visibility: visible;
 transform: translateY(0);
 
-// icon
-width: 120px;           // desktop
-height: 120px;
-object-fit: contain;    // preserve the original 158×136 ratio without stretching
-filter: drop-shadow(0 4px 10px rgba(91,78,30,0.22));
+// icon (240×240 viewBox 贴纸箭头)
+.img {
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(0 4px 10px rgba(91,78,30,0.22));
+    transition: filter 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.backtop:hover .img { filter: drop-shadow(0 4px 14px rgba(91,78,30,0.32)); }
 
-// hover
+// hover (container)
 transform: scale(1.08);
-filter: drop-shadow(0 4px 14px rgba(91,78,30,0.32));
+// active (press)
+transform: translateY(2px) scale(0.96);
 
 // focus-visible
 outline: 2px solid #ffcc00;
 outline-offset: 4px;
-border-radius: 50%;
-
-// mobile @media (max-width: 768px)
-bottom: 24px;
-right: 16px;
-icon 80×80px;
+border-radius: 16px;
 ```
 
 **关键交互细节：**
@@ -221,7 +300,6 @@ icon 80×80px;
 - `target` prop 支持传入自定义滚动容器函数。
 - 滚动动画使用 `requestAnimationFrame` + easeInOutQuad 缓动。
 - 键盘 Enter/Space 触发滚动。
-- 图标是 158×136px PNG，通过 `object-fit: contain` 在 120×120px 容器内等比缩放。
 
 ## Countdown（截止倒计时）
 
@@ -245,3 +323,15 @@ interface CountdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'
 ```
 
 默认风格是白色 20px 圆角面板、暖色边框和柔和投影；`island` 使用 `rgb(247,243,223)` 羊皮纸背景与 2px `#d4c4a8` 虚线边框。每个 DD / HH / mm / ss token 渲染为独立的 12px 圆角数字块（奶油渐变底 `linear-gradient(180deg, #fff, #f8f8f0)`；island 风格下为 `#fffdf4→#f8f8f0` 渐变底；1.5px `#d4c9b4` 细边框通过 `bordered` 属性开启，默认无边框），格式中的字面量（如 `:`、`天`）渲染为普通分隔符，冒号与数字同字号、900 字重、`#8b7355`。数字块内每一位数字是包含两轮 0-9 的纵向数字条，所有变化都以 0.35s `cubic-bezier(0.4, 0, 0.2, 1)` 过渡向下滚动（里程表式）；数字滚过 0 回绕时，数字条先无动画瞬移到下一循环的同数字位置，再继续向下滚动，方向永不反向。数字采用大地棕 `#8b7355`、900 字重、等宽数字，三档字号为 20/26/34px。滚动数字条对辅助技术隐藏，由视觉隐藏的完整格式化文本代替；根节点使用 `role="timer"` 与 `aria-live="off"`，避免读屏软件每 250ms 打断用户。
+
+## Time（实时时钟卡片）
+
+源码：`src/components/Time/Time.tsx` + `time.module.less`。
+
+零配置的实时时钟卡片：上方是大号 `HH:MM` 时间，每秒从 `new Date()` 刷新一次；下方胶囊显示星期与 `Mon DD`。其余 `div` 原生属性（`className`、`style`、`aria-*`…）全部透传到根节点。
+
+```ts
+type TimeProps = React.HTMLAttributes<HTMLDivElement>;
+```
+
+卡片为纵向堆叠的 inline-flex 面板 —— 背景为 `var(--animal-bg-color)`、20px 圆角、`--animal-shadow-sm` 柔和投影、无边框，挂载时以 `--animal-motion-duration-slow` 淡入。时钟为 40px / 800 字重 / `var(--animal-text-color)`，等宽数字、1px 字距；冒号按秒闪烁（`step-end`，50% 处透明度为 0）。日期胶囊为 `var(--animal-primary-color-bg)` 底、999px 圆角的药丸形，内含大写星期（`var(--animal-primary-color)`、800 字重、1px 字距）、`·` 分隔点（禁用色调）与月日（`var(--animal-text-color-secondary)`、700 字重）。根节点使用 `role="timer"` 与 `aria-live="off"`，每秒刷新不打断读屏软件。

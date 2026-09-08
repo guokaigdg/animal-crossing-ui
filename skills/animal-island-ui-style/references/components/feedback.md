@@ -38,6 +38,34 @@ Notes:
 - **Two independent animations**: fill **width** transitions on `percent` change (`duration` prop, default 0.6s, `0` disables) with `cubic-bezier(0.4, 0, 0.2, 1)`; stripe **background-position** scrolls from `0 0` to `-28.28px 0` over 1s linear (matches Button loading 1:1), disabled only under `prefers-reduced-motion: reduce`.
 - **Accessibility**: root has `role="progressbar"` with `aria-valuemin=0`, `aria-valuemax=100`, `aria-valuenow=<rounded percent>`, and `aria-valuetext` set to the rendered text when it's a string.
 
+## Loading
+
+Fullscreen night-sky snowfall over a `#0b101a` base: 50 white round flakes (1–6px, randomly sized and positioned) fall from above the viewport while rotating, each with its own 6–12s linear duration and a negative delay so the screen is instantly filled. A centre vignette adds depth; the optional `tip` floats centred in cream white. When `active` turns false the whole screen fades out over `fadeDuration` seconds, then unmounts.
+
+```ts
+interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
+    active?: boolean; // true/false toggles the screen; default true; false → fade out then unmount
+    tip?: React.ReactNode; // centred caption; falls back to a visually-hidden 加载中
+    delay?: number; // ms before the screen appears; default 0; re-arms on every active→true transition
+    fadeDuration?: number; // fade-out duration in seconds; default 0.6
+    zIndex?: number; // default 3000 (above Notification's 2000)
+}
+```
+
+```tsx
+<Loading active={active} />
+<Loading active={active} tip="正在连接岛屿…" />
+<Loading active={active} delay={300} />
+<Loading active={active} fadeDuration={1.2} zIndex={5000} />
+```
+
+Notes:
+
+- **Exit sequence**: `active` → false keeps the screen mounted with an `exiting` class (opacity → 0, `pointer-events: none`); a `fadeDuration * 1000` ms timer then unmounts it. Restoring `active` mid-fade cancels the timer and snaps back to opaque instantly.
+- **`delay` prevents flash**: the timer re-arms on every `active` → `true` transition, so a 600ms load with `delay={300}` barely flickers.
+- **Flakes are generated once per mount** (`useMemo`): random size 1–6px, `left` 0–100%, duration 6–12s, and a *negative* delay that starts each flake mid-cycle so the first frame is already full of snow instead of waiting up to 10s.
+- **A11y**: the root carries `role="status"`; the snowfall wrapper and vignette are `aria-hidden`; without `tip`, a visually-hidden `加载中` span provides the accessible content. `prefers-reduced-motion: reduce` stops the falling animation but keeps the opacity fade.
+
 ## Skeleton
 
 Loading placeholder rendering gray/beige blocks with a shimmer animation. When `loading` is `false`, children are rendered directly.
@@ -87,7 +115,7 @@ Notes:
 
 ## BackTop
 
-Floating back-to-top button that appears in the bottom-right corner after scrolling past a threshold. Default icon is an original badge SVG (inline data URI); clicking smooth-scrolls to the top with an easeInOutQuad animation.
+Floating back-to-top button that appears in the bottom-right corner after scrolling past a threshold. Default icon is an original sticker-style up-arrow SVG (inline data URI, 64px, with drop-shadow elevation); clicking smooth-scrolls to the top with an easeInOutQuad animation.
 
 ```ts
 interface BackTopProps {
@@ -101,7 +129,7 @@ interface BackTopProps {
 ```
 
 ```tsx
-<BackTop />                                    {/* badge icon, 400px threshold */}
+<BackTop />                                    {/* arrow icon, 400px threshold */}
 <div ref={ref} style={{ height: 300, overflow: 'auto' }}>
     <BackTop target={() => ref.current!} visibilityHeight={200} />
 </div>
@@ -111,7 +139,6 @@ interface BackTopProps {
 Notes:
 
 - **Default target is `window`** — works out of the box for page-level scrolling. Pass `target` for a custom scroll container.
-- **Mobile responsive**: icon shrinks from 120px to 80px under 768px viewport.
 - **A11y**: `role="button"`, `tabIndex={0}`, `aria-label="返回顶部"`. Enter/Space trigger the scroll.
 
 ## Countdown
@@ -137,3 +164,16 @@ interface CountdownProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onC
 ```
 
 The remaining time never drops below zero and `onFinish` fires once. Without a `DD` token, `HH` is total hours; with `DD`, hours are the 0–23 remainder. Each DD / HH / mm / ss token renders as its own 12px-radius digit tile; every digit inside is a vertical strip of two 0-9 cycles that always rolls downward to the current value with a 0.35s transition (odometer style — wrapping past 0 teleports to the next cycle and keeps rolling down, never reversing). Format literals such as `:` or `天` render as plain separators. The rolling strips are `aria-hidden`; a visually-hidden span carries the full formatted value. The root is `role="timer"` with `aria-live="off"`.
+
+## Time
+
+```ts
+type TimeProps = React.HTMLAttributes<HTMLDivElement>;
+```
+
+```tsx
+<Time />
+<Time className="island-clock" aria-label="岛屿时间" />
+```
+
+Zero-config live clock card: a large `HH:MM` readout on top refreshed from `new Date()` every second, weekday + `Mon DD` in a date capsule below. Borderless panel on `var(--animal-bg-color)` with 20px radius and `--animal-shadow-sm` elevation, fading in on mount; clock 40px 800 tabular in `var(--animal-text-color)` with a blinking colon; the capsule is a 999px pill on `var(--animal-primary-color-bg)` with an uppercase `var(--animal-primary-color)` weekday. The root is `role="timer"` with `aria-live="off"` so the per-second refresh stays silent to screen readers.
