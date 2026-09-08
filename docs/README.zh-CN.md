@@ -1,10 +1,10 @@
-# 🏝 Animal-Island-UI
+# Animal-Island-UI
 
 <div align="center">
-    <img src="img/readme-home.png" alt="animal-island-ui" style="border-radius: 12px; width: 40%; display: block; margin: 0 auto;" />    
+    <img src="img/readme-logo.png" alt="animal-island-ui" style="border-radius: 24px; width: 125px; display: block; margin: 0 auto 24px;" />    
 </div>
 <div align="center">
-一款参考《治愈系海岛》风格的 React UI 组件库
+一款可爱风格的 React UI 组件库
 </div>
 <br/>
 <div align="center">
@@ -15,8 +15,8 @@
     <a href="https://gitcode.com/guokaigdg/animal-island-ui"><img src="https://gitcode.com/guokaigdg/animal-island-ui/star/badge.svg" alt="Stars"></a>
     <br/>
     <a href="../coverage/badges/coverage.json"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/guokaigdg/animal-island-ui/main/coverage/badges/coverage.json&style=flat-square" alt="Coverage"></a>
-    <img src="https://img.shields.io/badge/tests-496%20✓-brightgreen?style=flat-square" alt="Tests">
-    <img src="https://img.shields.io/badge/components-33-blue?style=flat-square" alt="Components">
+    <img src="https://img.shields.io/badge/tests-516%20✓-brightgreen?style=flat-square" alt="Tests">
+    <img src="https://img.shields.io/badge/components-35-blue?style=flat-square" alt="Components">
     <img src="https://img.shields.io/badge/a11y-WAI--ARIA%20APG-brightgreen?style=flat-square" alt="Accessibility">
 </div>
 <br/>
@@ -31,24 +31,7 @@
 
 ## 介绍
 
-本项目是基于 React + TypeScript 实现的轻量 UI 组件库，采用原创的治愈系海岛风格设计语言，用于个人前端技术练习与组件化开发学习。
-
-所有视觉元素、布局、图标、动画均为本项目从零独立设计实现。
-
-## ⚠️ Git 历史已重写 — 请重新克隆
-
-2026 年 9 月，本仓库的全部 git 历史已重写，以移除侵犯任天堂版权的内容（依据 DMCA 下架通知）。此前所有提交、标签与发行版均已替换为清洁历史。
-
-**如果你在历史重写前克隆或 fork 过本仓库：**
-
-- 请勿 pull 或 merge —— 这会把已移除的内容重新带回你的副本。
-- 请删除旧的克隆/fork，然后从本仓库重新克隆或重新 fork。
-- 仅接受基于新历史的 Pull Request。
-
-## 预览
-
-- 在线预览 (PC 端) [animal-island-ui-pc](https://guokaigdg.github.io/animal-island-ui/#/)
-- 在线预览（移动端）[animal-island-ui-mobile](https://guokaigdg.github.io/animal-island-ui/#/)
+本项目是基于 React + TypeScript 实现的轻量 UI 组件库，采用原创的治愈系海岛风格设计语言，用于个人前端技术练习与组件化开发学习。所有视觉元素、布局、图标、动画均为本项目独立设计实现。
 
 ## 🚀 用 AI 工具一键生成 animal-island-ui 风格页面（无需写代码）
 

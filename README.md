@@ -1,7 +1,10 @@
-# 🏝 Animal-Island-UI
+# Animal-Island-UI
 
 <div align="center">
-A React UI component library with a cozy island-style design
+    <img src="./docs/img/readme-logo.png" alt="animal-island-ui" style="border-radius: 24px; width: 125px; display: block; margin: 0 auto 24px;" />
+</div>
+<div align="center">
+A React UI component library with a cute style
 </div>
 <br/>
 <div align="center">
@@ -9,11 +12,11 @@ A React UI component library with a cozy island-style design
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-CC--BY--NC--4.0-orange.svg?style=flat-square" alt="License: CC BY-NC 4.0"></a>
     <a href="LICENSE"><img src="https://img.shields.io/npm/dm/animal-island-ui.svg?style=flat-square" alt=""></a>
     <a href="https://github.com/guokaigdg/animal-island-ui/releases"><img src="https://img.shields.io/github/v/tag/guokaigdg/animal-island-ui?label=version&style=flat-square" alt="Version"></a>
-    <a href="https://gitcode.com/guokaigdg/animal-island-ui"><img src="https://gitcode.com/guokaigdg/animal-island-ui/star/badge.svg" alt="Stars"></a>
+    <!-- <a href="https://gitcode.com/guokaigdg/animal-island-ui"><img src="https://gitcode.com/guokaigdg/animal-island-ui/star/badge.svg" alt="Stars"></a> -->
     <br/>
     <a href="./coverage/badges/coverage.json"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/guokaigdg/animal-island-ui/main/coverage/badges/coverage.json&style=flat-square" alt="Coverage"></a>
-    <img src="https://img.shields.io/badge/tests-496%20✓-brightgreen?style=flat-square" alt="Tests">
-    <img src="https://img.shields.io/badge/components-33-blue?style=flat-square" alt="Components">
+    <img src="https://img.shields.io/badge/tests-516%20✓-brightgreen?style=flat-square" alt="Tests">
+    <img src="https://img.shields.io/badge/components-35-blue?style=flat-square" alt="Components">
     <img src="https://img.shields.io/badge/a11y-WAI--ARIA%20APG-brightgreen?style=flat-square" alt="Accessibility">
 </div>
 <br/>
@@ -29,24 +32,7 @@ A React UI component library with a cozy island-style design
 
 ## Introduction
 
-This project is a lightweight UI component library built with React + TypeScript. It features an original, cozy island-style design language, created for personal front-end technical practice and component development learning.
-
-All visual elements, layouts, icons, and animations are independently designed and implemented from scratch.
-
-## ⚠️ Git History Rewritten — Re-clone Required
-
-In September 2026, the entire git history of this repository was rewritten to remove content that infringed Nintendo's copyright (per a DMCA takedown notice). All previous commits, tags, and releases were replaced with a clean history.
-
-**If you cloned or forked this repository before the rewrite:**
-
-- Do NOT pull or merge — doing so would reintroduce the removed content into your copy.
-- Delete your old clone/fork, then re-clone or re-fork from this repository.
-- Only pull requests based on the new history can be accepted.
-
-## Preview
-
-- Online Preview (PC) [animal-island-ui-pc](https://guokaigdg.github.io/animal-island-ui/#/)
-- Online Preview (Mobile) [animal-island-ui-mobile](https://guokaigdg.github.io/animal-island-ui/#/)
+This project is a lightweight UI component library built with React + TypeScript. It features an original, cozy island-style design language, created for personal front-end technical practice and component development learning.All visual elements, layouts, icons, and animations are independently designed and implemented from scratch.
 
 ## 🚀 Use AI to Generate animal-island-ui Pages (No Coding Needed)
 
