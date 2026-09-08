@@ -1,0 +1,108 @@
+// ============================================
+// Loading — Animal Island Style
+// 全屏夜晚落雪：50 片随机大小的白色雪花从屏幕顶端旋转飘落，
+// 加载结束时整体渐变消失
+// ============================================
+
+// ---------- Tokens (avoid importing variables.less in module CSS) ----------
+@night-sky: #0b101a; // 夜空深蓝屏底
+@flake-color: #fff; // 雪花白
+@tip-color: #f8f8f0; // 奶油白提示文字
+
+// ---------- Root（全屏落雪） ----------
+.loading {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: @night-sky;
+    opacity: 1;
+    // 进入：短淡入；退出时长由 inline transitionDuration（fadeDuration）覆盖
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: animal-loading-fade-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// 渐变消失：整体淡出并放行点击
+.loading.exiting {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes animal-loading-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+// ---------- 雪花层（aria-hidden 包裹层） ----------
+.snow {
+    position: absolute;
+    inset: 0;
+}
+
+// 单片雪花：白色圆点，从视口上方飘落到视口下方并旋转一整圈；
+// 尺寸 / 水平位置 / 时长 / 负延迟由 JSX 内联注入
+.flake {
+    position: absolute;
+    top: -30px;
+    background: @flake-color;
+    border-radius: 50%;
+    animation: animal-loading-snow 10s linear infinite;
+}
+
+@keyframes animal-loading-snow {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(calc(100vh + 60px)) rotate(360deg);
+    }
+}
+
+// ---------- 暗角（聚焦中央） ----------
+.vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(5, 10, 20, 0.6) 100%);
+}
+
+// ---------- 中央提示文字 ----------
+.tip {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    color: @tip-color;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+// ---------- 读屏专用文本（无 tip 时的兜底文案） ----------
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// ---------- Reduced motion ----------
+// 停止飘落（雪花静止在视口上方不可见）；opacity 过渡不属于位移运动，予以保留
+@media (prefers-reduced-motion: reduce) {
+    .flake {
+        animation: none;
+    }
+
+    .loading {
+        animation: none;
+    }
+}
