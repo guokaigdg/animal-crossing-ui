@@ -1,0 +1,79 @@
+// 实时时钟卡片：无边框软影面板 + 主色日期胶囊，纵向排布与库内 Countdown / Tag 同一设计语言
+.time {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--animal-spacing-md, 12px);
+    box-sizing: border-box;
+    width: fit-content;
+    padding: 20px 32px;
+    border-radius: 20px;
+    background: var(--animal-bg-color, #fff);
+    box-shadow: var(--animal-shadow-sm, 0 2px 4px rgba(61, 52, 40, 0.06));
+    font-family: var(--animal-font-family, 'Nunito', 'Noto Sans SC');
+    animation: animal-time-fade-in var(--animal-motion-duration-slow, 0.35s)
+        var(--animal-motion-ease, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+// 上方时钟：HH:MM，等宽数字
+.clock {
+    display: flex;
+    align-items: center;
+    color: var(--animal-text-color, #794f27);
+    font-weight: 800;
+    font-size: 40px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+// 冒号：按秒闪烁
+.colon {
+    margin: 0 2px;
+    animation: animal-time-blink 1s step-end infinite;
+}
+
+// 下方日期胶囊：主色底圆角胶囊，星期 · 月日
+.date {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--animal-spacing-xs, 4px);
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: var(--animal-primary-color-bg, #e6f9f6);
+    font-size: var(--animal-font-size-sm, 12px);
+    font-weight: 700;
+    color: var(--animal-text-color-secondary, #9f927d);
+    white-space: nowrap;
+}
+
+.weekday {
+    color: var(--animal-primary-color, #19c8b9);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dot {
+    color: var(--animal-text-color-disabled, #c4b89e);
+}
+
+.monthDay {
+    font-variant-numeric: tabular-nums;
+}
+
+@keyframes animal-time-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes animal-time-blink {
+    50% {
+        opacity: 0;
+    }
+}
