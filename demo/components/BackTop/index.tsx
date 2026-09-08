@@ -121,11 +121,11 @@ const BackTopDemo: React.FC = () => {
     return (
         <div style={sectionStyle}>
             <div style={sectionTitleStyle}>
-                BackTop <DemoTag>返回顶部</DemoTag> <DemoTag>徽章图形</DemoTag>
+                BackTop <DemoTag>返回顶部</DemoTag> <DemoTag>上箭头</DemoTag>
             </div>
             <div style={demoBodyStyle}>
                 <div style={{ fontSize: 14, color: '#9f927d', marginBottom: 16, lineHeight: 1.6 }}>
-                    页面已自动滚动到底部，点击右下角的徽章图标返回顶部。
+                    页面已自动滚动到底部，点击右下角的上箭头返回顶部。
                     <br />
                     <code style={{ background: '#f0e8d8', padding: '2px 8px', borderRadius: 6, fontSize: 12 }}>
                         visibilityHeight=400
@@ -206,7 +206,7 @@ const BackTopDemo: React.FC = () => {
             <CodeBlock
                 code={`import { BackTop } from 'animal-island-ui';
 
-// 基础用法 — 右下角徽章返回顶部
+// 基础用法 — 右下角上箭头返回顶部
 <BackTop visibilityHeight={400} />
 
 // 自定义动画时长

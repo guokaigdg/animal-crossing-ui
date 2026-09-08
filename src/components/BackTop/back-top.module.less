@@ -34,7 +34,7 @@
     &:focus-visible {
         outline: 2px solid #ffcc00;
         outline-offset: 4px;
-        border-radius: 50%;
+        border-radius: 16px;
     }
 }
 
@@ -45,7 +45,13 @@
 }
 
 .img {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
     display: block;
+    filter: drop-shadow(0 4px 10px rgba(91, 78, 30, 0.22));
+    transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backtop:hover .img {
+    filter: drop-shadow(0 4px 14px rgba(91, 78, 30, 0.32));
 }
