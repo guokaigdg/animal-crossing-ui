@@ -72,7 +72,7 @@ function App() {
     return (
         <div>
             <Button type="primary">开始冒险</Button>
-            <Card color="app-blue">欢迎来到无人岛！</Card>
+            <Card color="app-blue">欢迎来到小岛！</Card>
         </div>
     );
 }

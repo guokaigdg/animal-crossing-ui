@@ -22,7 +22,7 @@ const TabsDemo: React.FC = () => {
             label: '岛屿概况',
             children: (
                 <div>
-                    <p style={{ marginBottom: 12 }}>这里是一座无人岛，环境优美，气候宜人。</p>
+                    <p style={{ marginBottom: 12 }}>这里是一座小岛，环境优美，气候宜人。</p>
                     <p>可以钓鱼、捉虫、种植各种植物。</p>
                 </div>
             ),

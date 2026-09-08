@@ -67,17 +67,17 @@ const TableDemo: React.FC = () => {
     ];
 
     const dataSource = [
-        { key: '1', name: '豆狸', age: 26, island: '彩虹岛', fruit: '苹果', hobby: '音乐' },
-        { key: '2', name: '粒狸', age: 24, island: '彩虹岛', fruit: '橘子', hobby: '运动' },
-        { key: '3', name: '西施惠', age: 28, island: '好评岛', fruit: '樱桃', hobby: '唱歌' },
-        { key: '4', name: '喻哥', age: 30, island: '无人岛', fruit: '梨', hobby: '钓鱼' },
-        { key: '5', name: '小润', age: 22, island: '摸鱼岛', fruit: '桃子', hobby: '画画' },
+        { key: '1', name: 'Mochi', age: 26, island: '彩虹岛', fruit: '苹果', hobby: '音乐' },
+        { key: '2', name: 'Pudding', age: 24, island: '彩虹岛', fruit: '橘子', hobby: '运动' },
+        { key: '3', name: 'Cream', age: 28, island: '好评岛', fruit: '樱桃', hobby: '唱歌' },
+        { key: '4', name: 'Yuki', age: 30, island: '小岛', fruit: '梨', hobby: '钓鱼' },
+        { key: '5', name: 'Haru', age: 22, island: '摸鱼岛', fruit: '桃子', hobby: '画画' },
     ] as Record<string, unknown>[];
 
     // 分页示例数据：12 条，配 defaultPageSize 3
     const hobbies = ['音乐', '运动', '唱歌', '钓鱼', '画画'];
     const fruits = ['苹果', '橘子', '樱桃', '梨', '桃子', '椰子'];
-    const islands = ['彩虹岛', '好评岛', '无人岛', '摸鱼岛'];
+    const islands = ['彩虹岛', '好评岛', '小岛', '摸鱼岛'];
     const bigDataSource = Array.from({ length: 12 }, (_, i) => ({
         key: String(i + 1),
         name: `岛民${i + 1}号`,
@@ -176,9 +176,9 @@ const columns = [
 ];
 
 const data = [
-    { key: '1', name: '豆狸', age: 26, island: '彩虹岛', fruit: '苹果', hobby: '音乐' },
-    { key: '2', name: '粒狸', age: 24, island: '彩虹岛', fruit: '橘子', hobby: '运动' },
-    { key: '3', name: '西施惠', age: 28, island: '好评岛', fruit: '樱桃', hobby: '唱歌' },
+    { key: '1', name: 'Mochi', age: 26, island: '彩虹岛', fruit: '苹果', hobby: '音乐' },
+    { key: '2', name: 'Pudding', age: 24, island: '彩虹岛', fruit: '橘子', hobby: '运动' },
+    { key: '3', name: 'Cream', age: 28, island: '好评岛', fruit: '樱桃', hobby: '唱歌' },
 ];
 
 const App = () => {

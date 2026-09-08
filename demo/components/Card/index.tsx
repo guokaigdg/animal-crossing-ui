@@ -78,7 +78,7 @@ const CardDemo: React.FC = () => (
                     <p>虚线边框卡片</p>
                 </Card>
                 <Card type="dashed" style={{ maxWidth: 360, width: '100%' }}>
-                    <p>欢迎来到无人岛！虚线边框适合用于轻量提示或次要信息展示。</p>
+                    <p>欢迎来到小岛！虚线边框适合用于轻量提示或次要信息展示。</p>
                 </Card>
             </div>
             <div style={labelStyle}>hoverable 启用 hover(默认关闭)</div>

@@ -138,7 +138,7 @@ const ModalDemo: React.FC = () => {
                 onClose={() => setTitleModalOpen(false)}
                 onOk={() => setTitleModalOpen(false)}
             >
-                是否愿意将这条鱼捐赠给博物馆呢？傅达会好好照顾它的！这可是博物馆的新展品哦~
+                是否愿意将这条鱼捐赠给博物馆呢？海獭馆长会好好照顾它的！这可是博物馆的新展品哦~
             </Modal>
             <Modal
                 open={customFooterOpen}

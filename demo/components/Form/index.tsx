@@ -260,7 +260,7 @@ const FormDemo: React.FC = () => {
                                 type="dashed"
                                 onClick={() => {
                                     form.setFieldsValue({
-                                        name: '豆狸粒',
+                                        name: 'Mochi',
                                         fruit: 'orange',
                                         hobby: ['fish', 'mine'],
                                     });
@@ -368,7 +368,7 @@ const FormDemo: React.FC = () => {
                         <Input placeholder="整数" />
                     </FormItem>
                     <FormItem label="邀请码" name="code" rules={[{ pattern: /^[A-Z]{4}$/, message: '4 位大写字母' }]}>
-                        <Input placeholder="如：ACNH" />
+                        <Input placeholder="请输入邀请码" />
                     </FormItem>
                     <FormItem>
                         <div style={{ marginTop: 8 }}>

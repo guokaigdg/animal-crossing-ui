@@ -74,7 +74,7 @@ function App() {
     return (
         <div>
             <Button type="primary">Start Adventure</Button>
-            <Card color="app-blue">Welcome to the deserted island!</Card>
+            <Card color="app-blue">Welcome to the island!</Card>
         </div>
     );
 }
