@@ -1,27 +1,28 @@
 // ============================================
 // BackTop — Animal Island Style
-// 返回顶部按钮，原创徽章图形浮窗
+// 返回顶部按钮，仅显示火箭图标（无按钮底色/边框设计）
 // ============================================
 
 .backtop {
     position: fixed;
-    bottom: 48px;
-    right: 32px;
+    bottom: 32px;
+    right: 24px;
     z-index: 1000;
     cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    user-select: none;
     transition:
         opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(12px);
-    user-select: none;
-    border: none;
-    outline: none;
-    background: none;
-    padding: 0;
-    line-height: 1;
+    transform: translateY(10px);
 
     &:hover {
         transform: translateY(0) scale(1.08);
@@ -32,8 +33,8 @@
     }
 
     &:focus-visible {
-        outline: 2px solid #ffcc00;
-        outline-offset: 4px;
+        outline: 2px solid #19c8b9;
+        outline-offset: 2px;
         border-radius: 16px;
     }
 }

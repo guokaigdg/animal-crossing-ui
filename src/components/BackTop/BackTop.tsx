@@ -1,16 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './back-top.module.less';
-
-// 原创上箭头图形：贴纸风粗圆角箭头（暖棕描边 + 奶油糖霜层 + 青绿主体 + 高光，代码生成，非素材文件）
-const arrowSvg = encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
-  <path d="M120 38 L202 128 H158 V200 H82 V128 H38 Z" fill="none" stroke="#c9a06c" stroke-width="26" stroke-linejoin="round"/>
-  <path d="M120 38 L202 128 H158 V200 H82 V128 H38 Z" fill="none" stroke="#fffdf4" stroke-width="15" stroke-linejoin="round"/>
-  <path d="M120 38 L202 128 H158 V200 H82 V128 H38 Z" fill="#19c8b9" stroke="#19c8b9" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M108 66 L78 102" stroke="#7fe0d4" stroke-width="11" stroke-linecap="round" fill="none"/>
-</svg>`
-);
+import rocketIcon from './rocket.svg';
 
 export interface BackTopProps {
     /** 滚动容器，默认 window */
@@ -98,7 +89,7 @@ export const BackTop: React.FC<BackTopProps> = ({
                 }
             }}
         >
-            <img className={styles.img} src={`data:image/svg+xml,${arrowSvg}`} alt="返回顶部" />
+            <img className={styles.img} src={rocketIcon} alt="返回顶部" />
         </div>
     );
 };
