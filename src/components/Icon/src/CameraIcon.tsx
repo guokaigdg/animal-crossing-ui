@@ -1,0 +1,22 @@
+import { SVGProps } from 'react';
+
+export const CameraIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <rect x="6" y="16" width="36" height="24" rx="3" fill="#264653" />
+        <path d="M18 16 L20 10 L28 10 L30 16" fill="#264653" />
+        <circle cx="24" cy="28" r="8" fill="#FAEDCD" />
+        <circle cx="24" cy="28" r="4" fill="#E76F51" />
+        <rect x="34" y="19" width="4" height="3" fill="#E9C46A" />
+    </svg>
+);
+
+export default CameraIcon;

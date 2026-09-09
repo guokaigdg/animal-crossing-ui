@@ -42,31 +42,31 @@ export interface WorkflowStep {
 /** 工作原理 —— 代理视角的五步 */
 export const WORKFLOW: WorkflowStep[] = [
     {
-        icon: 'icon-shopping',
+        icon: 'ShoppingBag',
         pattern: 'app-blue',
         title: '装载',
         desc: '技能是纯文本知识包，没有可执行代码，安装后躺在代理的 skills 目录里',
     },
     {
-        icon: 'icon-chat',
+        icon: 'Chat',
         pattern: 'app-orange',
         title: '触发',
         desc: '代理按 SKILL.md 的 description 匹配当前对话，命中才加载正文，不占用日常上下文',
     },
     {
-        icon: 'icon-variant',
+        icon: 'Globe',
         pattern: 'app-yellow',
         title: '路由',
         desc: 'React 项目读 react-project.md，单文件 HTML 读 standalone-html.md',
     },
     {
-        icon: 'icon-encyclopedia',
+        icon: 'Book',
         pattern: 'app-teal',
         title: '对照 API',
         desc: 'props、合法取值、默认值逐个查 references/components/，杜绝凭印象编造',
     },
     {
-        icon: 'icon-design',
+        icon: 'Paintbrush',
         pattern: 'brown',
         title: '产出',
         desc: '按令牌与硬性规则落地：暖色羊皮纸、薄荷主色、胶囊形状与 3D 按钮质感',
@@ -85,7 +85,7 @@ export interface Scenario {
 export const SCENARIOS: Scenario[] = [
     {
         title: 'React 项目',
-        icon: 'icon-design',
+        icon: 'Code',
         color: 'app-teal',
         agents: ['Claude Code', 'Codex', 'Cursor'],
         desc: '已安装 animal-island-ui npm 包的工程：代理以包内 TypeScript 声明为准搭页面，并用 --animal-* 令牌做主题。',
@@ -93,7 +93,7 @@ export const SCENARIOS: Scenario[] = [
     },
     {
         title: '独立 HTML',
-        icon: 'icon-map',
+        icon: 'File',
         color: 'app-yellow',
         agents: ['任意兼容代理'],
         desc: '无 npm、无打包器：React 走 CDN + Babel 运行时，手写组件但镜像真实 API，产出单个 index.html。',
@@ -173,7 +173,7 @@ export interface RuleGroup {
 export const RULE_GROUPS: RuleGroup[] = [
     {
         title: 'API 纪律',
-        icon: 'icon-encyclopedia',
+        icon: 'Book',
         color: 'app-red',
         rules: [
             '绝不编造 props —— 每个 prop 必须出现在组件参考或包内 TS 声明中。',
@@ -183,7 +183,7 @@ export const RULE_GROUPS: RuleGroup[] = [
     },
     {
         title: '导入与工程',
-        icon: 'icon-map',
+        icon: 'Map',
         color: 'app-blue',
         rules: [
             "样式只导入一次：应用入口 `import 'animal-island-ui/style'`，否则组件无样式。",
@@ -193,7 +193,7 @@ export const RULE_GROUPS: RuleGroup[] = [
     },
     {
         title: '色彩与字体',
-        icon: 'icon-design',
+        icon: 'Paintbrush',
         color: 'app-pink',
         rules: [
             '禁用纯黑（#000 / #111）文字与冷灰（#fafafa / #f5f5f5）背景。',
@@ -203,7 +203,7 @@ export const RULE_GROUPS: RuleGroup[] = [
     },
     {
         title: '形状与质感',
-        icon: 'icon-diy',
+        icon: 'Pencil',
         color: 'app-yellow',
         rules: [
             '可交互元素圆角不得小于 12px；按钮与输入框为 50px 胶囊。',
@@ -213,10 +213,10 @@ export const RULE_GROUPS: RuleGroup[] = [
     },
     {
         title: '图标与动效',
-        icon: 'icon-camera',
+        icon: 'Camera',
         color: 'app-teal',
         rules: [
-            '图标一律用 <Icon name="..." />（内置 13 个）或 <Icon icon={...} />（任一 lucide 图标）—— 禁止 emoji、Unicode 符号、手写 SVG、第三方图标字体。',
+            '图标一律用 <Icon name="..." />（内置可爱图标集，共 101 个）或 <Icon icon={...} />（内置图标组件）—— 禁止 emoji、Unicode 符号、手写 SVG、第三方图标库。',
             '动效使用 cubic-bezier(0.4, 0, 0.2, 1)，时长 0.15–0.35s。',
         ],
     },

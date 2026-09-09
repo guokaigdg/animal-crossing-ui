@@ -1,65 +1,26 @@
 import React from 'react';
-import {
-    BookOpen,
-    Camera,
-    ChevronLeft,
-    ChevronRight,
-    FileText,
-    Hammer,
-    Map,
-    MapPin,
-    MessageCircle,
-    Palette,
-    Shuffle,
-    ShoppingCart,
-    Wifi,
-    type LucideIcon,
-} from 'lucide-react';
+import * as NAIVE from './src';
+import type { IconName, IconComponent } from './src/types';
 import styles from './icon.module.less';
 
-export type IconName =
-    | 'icon-left'
-    | 'icon-right'
-    | 'location'
-    | 'page'
-    | 'wifi'
-    | 'icon-shopping'
-    | 'icon-chat'
-    | 'icon-variant'
-    | 'icon-encyclopedia'
-    | 'icon-design'
-    | 'icon-map'
-    | 'icon-diy'
-    | 'icon-camera';
-
-/** 内置语义图标：均渲染 lucide-react 图标（https://lucide.dev/icons/） */
-const BUILTIN_ICONS: Record<IconName, LucideIcon> = {
-    'icon-left': ChevronLeft,
-    'icon-right': ChevronRight,
-    location: MapPin,
-    page: FileText,
-    wifi: Wifi,
-    'icon-shopping': ShoppingCart,
-    'icon-chat': MessageCircle,
-    'icon-variant': Shuffle,
-    'icon-encyclopedia': BookOpen,
-    'icon-design': Palette,
-    'icon-map': Map,
-    'icon-diy': Hammer,
-    'icon-camera': Camera,
-};
+/** 内置可爱图标注册表：key 为去掉 Icon 后缀的名字（如 Flower），来自 src/components/Icon/src 的全部 101 个 *Icon 组件 */
+const ICONS: Record<IconName, IconComponent> = Object.fromEntries(
+    Object.entries(NAIVE)
+        .filter(([, value]) => typeof value === 'function')
+        .map(([cmpName, value]) => [cmpName.replace(/Icon$/, ''), value])
+) as Record<IconName, IconComponent>;
 
 export interface IconProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
-    /** 内置具名图标。与 icon / src 二选一 */
+    /** 内置可爱图标名（共 101 个，如 Heart / Flower）。与 icon / src 三选一 */
     name?: IconName;
-    /** 任意 lucide-react 图标组件（import { Heart } from 'lucide-react'）。与 name / src 二选一 */
-    icon?: LucideIcon;
-    /** 自定义图标资源 URL。与 name / icon 二选一，用于彩色位图等非矢量场景 */
+    /** 任意内置图标组件（import { HeartIcon } from 'animal-island-ui'）。与 name / src 三选一，优先级高于 name */
+    icon?: IconComponent;
+    /** 自定义图标资源 URL。与 name / icon 三选一，用于彩色位图等非矢量场景 */
     src?: string;
     size?: number | string;
-    /** 描边颜色（lucide 模式），默认继承 currentColor */
+    /** 描边颜色（svg 模式），默认继承 currentColor */
     color?: string;
-    /** 描边粗细（lucide 模式），默认 2 */
+    /** 描边粗细（svg 模式），默认 3.5 */
     strokeWidth?: number | string;
     bounce?: boolean;
 }
@@ -76,23 +37,23 @@ export const Icon: React.FC<IconProps> = ({
     bounce = false,
     ...rest
 }) => {
-    const cls = [styles.icon, name ? styles[name] : '', bounce ? styles['icon-bounce'] : '', className || '']
-        .filter(Boolean)
-        .join(' ');
+    const cls = [styles.icon, bounce ? styles['icon-bounce'] : '', className || ''].filter(Boolean).join(' ');
 
-    const LucideCmp = icon ?? (name ? BUILTIN_ICONS[name] : undefined);
+    const IconCmp = icon ?? (name ? ICONS[name] : undefined);
 
-    if (LucideCmp) {
+    if (IconCmp) {
         const labeled = Boolean(rest['aria-label']);
+        const passthrough: Record<string, unknown> = { ...(rest as object) };
+        // Naive 组件默认 stroke="#2A2A2A" strokeWidth={3.5}；仅当显式传入时才覆盖，避免 undefined 把默认值冲掉
+        if (color !== undefined) passthrough.stroke = color;
+        if (strokeWidth !== undefined) passthrough.strokeWidth = strokeWidth;
         return (
-            <LucideCmp
+            <IconCmp
                 className={cls}
-                color={color}
-                strokeWidth={strokeWidth}
                 style={{ width: size, height: size, ...style }}
                 aria-hidden={labeled ? undefined : true}
                 role={labeled ? 'img' : undefined}
-                {...(rest as React.SVGProps<SVGSVGElement>)}
+                {...(passthrough as React.SVGProps<SVGSVGElement>)}
             />
         );
     }
@@ -111,18 +72,10 @@ export const Icon: React.FC<IconProps> = ({
     );
 };
 
-export const ICON_LIST = [
-    { name: 'icon-left', label: 'Left' },
-    { name: 'icon-right', label: 'Right' },
-    { name: 'location', label: 'Location' },
-    { name: 'page', label: 'Page' },
-    { name: 'wifi', label: 'WiFi' },
-    { name: 'icon-shopping', label: 'Shopping' },
-    { name: 'icon-chat', label: 'Chat' },
-    { name: 'icon-variant', label: 'Variant' },
-    { name: 'icon-encyclopedia', label: 'Encyclopedia' },
-    { name: 'icon-design', label: 'Design' },
-    { name: 'icon-map', label: 'Map' },
-    { name: 'icon-diy', label: 'DIY' },
-    { name: 'icon-camera', label: 'Camera' },
-] as const satisfies ReadonlyArray<{ name: IconName; label: string }>;
+export type { IconName, IconComponent } from './src/types';
+
+/** 全部内置图标清单，供展示使用 */
+export const ICON_LIST = (Object.entries(ICONS) as Array<[IconName, IconComponent]>).map(([name]) => ({
+    name,
+    label: name.replace(/Icon$/, ''),
+})) as ReadonlyArray<{ name: IconName; label: string }>;

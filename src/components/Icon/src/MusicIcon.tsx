@@ -1,0 +1,20 @@
+import { SVGProps } from 'react';
+
+export const MusicIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <ellipse cx="16" cy="32" rx="8" ry="6" transform="rotate(-15 16 32)" fill="#E76F51" />
+        <ellipse cx="34" cy="28" rx="8" ry="6" transform="rotate(-15 34 28)" fill="#E76F51" />
+        <path d="M22 14 L40 10 L40 28" stroke="#2A2A2A" stroke-width="3" />
+    </svg>
+);
+
+export default MusicIcon;

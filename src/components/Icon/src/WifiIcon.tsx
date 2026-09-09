@@ -1,0 +1,20 @@
+import { SVGProps } from 'react';
+
+export const WifiIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <path d="M9 21 A 19 19 0 0 1 39 21" stroke="#2A9D8F" stroke-width="4" fill="none" />
+        <path d="M15 28 A 11.5 11.5 0 0 1 33 28" stroke="#E76F51" stroke-width="4" fill="none" />
+        <circle cx="24" cy="35" r="4" fill="#E9C46A" />
+    </svg>
+);
+
+export default WifiIcon;

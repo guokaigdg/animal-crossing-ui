@@ -1,0 +1,20 @@
+import { SVGProps } from 'react';
+
+export const EditIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <path d="M8 38 L8 32 L30 10 L38 18 L16 40 L10 40 Z" fill="#E9C46A" />
+        <path d="M30 10 L36 4 L42 10 L38 16" fill="#F4A6A4" />
+        <path d="M8 38 L14 38" stroke="#2A2A2A" stroke-width="2" />
+    </svg>
+);
+
+export default EditIcon;

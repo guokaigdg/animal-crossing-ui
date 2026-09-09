@@ -1,0 +1,22 @@
+import { SVGProps } from 'react';
+
+export const GiftIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <rect x="8" y="20" width="32" height="22" fill="#E76F51" />
+        <rect x="8" y="14" width="32" height="8" fill="#F4A6A4" />
+        <path d="M24 14 L24 42" stroke="#2A2A2A" stroke-width="3" />
+        <path d="M18 14 C 12 10 16 4 22 8 C 24 10 24 14 24 14 Z" fill="#F4A6A4" />
+        <path d="M30 14 C 36 10 32 4 26 8 C 24 10 24 14 24 14 Z" fill="#F4A6A4" />
+    </svg>
+);
+
+export default GiftIcon;

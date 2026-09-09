@@ -1,0 +1,31 @@
+import { SVGProps } from 'react';
+
+export const RabbitIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <ellipse cx="17" cy="12" rx="4" ry="9" fill="#FAEDCD" />
+        <ellipse cx="31" cy="12" rx="4" ry="9" fill="#FAEDCD" />
+        <ellipse cx="17" cy="13" rx="1.8" ry="5.5" fill="#F4A6A4" />
+        <ellipse cx="31" cy="13" rx="1.8" ry="5.5" fill="#F4A6A4" />
+        <circle cx="24" cy="31" r="13" fill="#FAEDCD" />
+        <circle cx="19" cy="29" r="1.6" fill="#2A2A2A" />
+        <circle cx="29" cy="29" r="1.6" fill="#2A2A2A" />
+        <path d="M22 33 L26 33 L24 35.5 Z" fill="#F4A6A4" />
+        <path d="M24 35.5 L24 37" stroke="#2A2A2A" stroke-width="1.8" />
+        <path d="M20 39 Q 24 41.5 28 39" stroke="#2A2A2A" fill="none" stroke-width="1.8" />
+        <path d="M11 31 L5 29" stroke="#2A2A2A" stroke-width="1.5" />
+        <path d="M11 35 L5 36" stroke="#2A2A2A" stroke-width="1.5" />
+        <path d="M37 31 L43 29" stroke="#2A2A2A" stroke-width="1.5" />
+        <path d="M37 35 L43 36" stroke="#2A2A2A" stroke-width="1.5" />
+    </svg>
+);
+
+export default RabbitIcon;

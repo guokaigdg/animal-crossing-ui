@@ -1,0 +1,27 @@
+import { SVGProps } from 'react';
+
+export const SnowflakeIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <circle cx="24" cy="24" r="3.5" fill="#2A9D8F" />
+        <path d="M24 5 L24 43" stroke="#2A9D8F" stroke-width="3" />
+        <path d="M7.6 14.5 L40.4 33.5" stroke="#2A9D8F" stroke-width="3" />
+        <path d="M7.6 33.5 L40.4 14.5" stroke="#2A9D8F" stroke-width="3" />
+        <path d="M20 10 L24 6 L28 10" stroke="#2A9D8F" stroke-width="2.5" fill="none" />
+        <path d="M20 38 L24 42 L28 38" stroke="#2A9D8F" stroke-width="2.5" fill="none" />
+        <path d="M9.5 11 L8 15.5 L12.5 16.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" />
+        <path d="M38.5 37 L40 32.5 L35.5 31.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" />
+        <path d="M12.5 31.5 L8 32.5 L9.5 37" stroke="#2A9D8F" stroke-width="2.5" fill="none" />
+        <path d="M35.5 16.5 L40 15.5 L38.5 11" stroke="#2A9D8F" stroke-width="2.5" fill="none" />
+    </svg>
+);
+
+export default SnowflakeIcon;

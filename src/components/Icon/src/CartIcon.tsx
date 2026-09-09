@@ -1,0 +1,20 @@
+import { SVGProps } from 'react';
+
+export const CartIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <path d="M6 8 L12 8 L16 32 L38 32 L42 16 L16 16" fill="#2A9D8F" />
+        <circle cx="18" cy="40" r="4" fill="#E76F51" />
+        <circle cx="34" cy="40" r="4" fill="#E76F51" />
+    </svg>
+);
+
+export default CartIcon;

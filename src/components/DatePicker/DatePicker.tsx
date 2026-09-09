@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import styles from './date-picker.module.less';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export type DatePickerSize = 'small' | 'middle' | 'large';
 
@@ -620,11 +619,20 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                             onClick={() => shiftView(-1, 0)}
                                                             onMouseDown={(e) => e.preventDefault()}
                                                         >
-                                                            <ChevronLeft
+                                                            <svg
                                                                 className={styles.navIcon}
-                                                                size={16}
-                                                                aria-hidden="true"
-                                                            />
+                                                                viewBox="0 0 12 12"
+                                                                fill="none"
+                                                                aria-hidden
+                                                            >
+                                                                <path
+                                                                    d="M7.5 2.5L4 6l3.5 3.5"
+                                                                    stroke="currentColor"
+                                                                    strokeWidth="1.5"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                />
+                                                            </svg>
                                                         </button>
                                                     )}
                                                     {idx === 0 && (
@@ -635,11 +643,21 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                             onClick={() => shiftView(0, -1)}
                                                             onMouseDown={(e) => e.preventDefault()}
                                                         >
-                                                            <ChevronLeft
-                                                                size={12}
-                                                                strokeWidth={1.5}
-                                                                aria-hidden="true"
-                                                            />
+                                                            <svg
+                                                                width="12"
+                                                                height="12"
+                                                                viewBox="0 0 12 12"
+                                                                fill="none"
+                                                                aria-hidden
+                                                            >
+                                                                <path
+                                                                    d="M7.5 2.5L4 6l3.5 3.5"
+                                                                    stroke="currentColor"
+                                                                    strokeWidth="1.5"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                />
+                                                            </svg>
                                                         </button>
                                                     )}
                                                 </div>
@@ -655,11 +673,21 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                             onClick={() => shiftView(0, 1)}
                                                             onMouseDown={(e) => e.preventDefault()}
                                                         >
-                                                            <ChevronRight
-                                                                size={12}
-                                                                strokeWidth={1.5}
-                                                                aria-hidden="true"
-                                                            />
+                                                            <svg
+                                                                width="12"
+                                                                height="12"
+                                                                viewBox="0 0 12 12"
+                                                                fill="none"
+                                                                aria-hidden
+                                                            >
+                                                                <path
+                                                                    d="M4.5 2.5L8 6l-3.5 3.5"
+                                                                    stroke="currentColor"
+                                                                    strokeWidth="1.5"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                />
+                                                            </svg>
                                                         </button>
                                                     )}
                                                     {idx === 1 && (
@@ -670,11 +698,20 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                             onClick={() => shiftView(1, 0)}
                                                             onMouseDown={(e) => e.preventDefault()}
                                                         >
-                                                            <ChevronRight
+                                                            <svg
                                                                 className={styles.navIcon}
-                                                                size={16}
-                                                                aria-hidden="true"
-                                                            />
+                                                                viewBox="0 0 12 12"
+                                                                fill="none"
+                                                                aria-hidden
+                                                            >
+                                                                <path
+                                                                    d="M4.5 2.5L8 6l-3.5 3.5"
+                                                                    stroke="currentColor"
+                                                                    strokeWidth="1.5"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                />
+                                                            </svg>
                                                         </button>
                                                     )}
                                                 </div>
@@ -706,7 +743,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         onClick={() => (mode === 'year' ? shiftView(-10, 0) : shiftView(-1, 0))}
                                         onMouseDown={(e) => e.preventDefault()}
                                     >
-                                        <ChevronLeft className={styles.navIcon} size={16} aria-hidden="true" />
+                                        <svg className={styles.navIcon} viewBox="0 0 12 12" fill="none" aria-hidden>
+                                            <path
+                                                d="M7.5 2.5L4 6l3.5 3.5"
+                                                stroke="currentColor"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
                                     </button>
                                     {mode === 'date' && (
                                         <button
@@ -770,7 +815,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         onClick={() => (mode === 'year' ? shiftView(10, 0) : shiftView(1, 0))}
                                         onMouseDown={(e) => e.preventDefault()}
                                     >
-                                        <ChevronRight className={styles.navIcon} size={16} aria-hidden="true" />
+                                        <svg className={styles.navIcon} viewBox="0 0 12 12" fill="none" aria-hidden>
+                                            <path
+                                                d="M4.5 2.5L8 6l-3.5 3.5"
+                                                stroke="currentColor"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
                                     </button>
                                 </div>
                             </div>

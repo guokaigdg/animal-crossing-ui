@@ -1,0 +1,26 @@
+import { SVGProps } from 'react';
+
+export const TrophyIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <path d="M14 12 C 6 12 6 22 14 22" stroke="#2A2A2A" stroke-width="3" fill="none" />
+        <path d="M34 12 C 42 12 42 22 34 22" stroke="#2A2A2A" stroke-width="3" fill="none" />
+        <path d="M14 7 L 34 7 L 34 17 C 34 25 29 29 24 29 C 19 29 14 25 14 17 Z" fill="#E9C46A" />
+        <path d="M24 29 L 24 37" stroke="#2A2A2A" stroke-width="3" />
+        <rect x="15" y="37" width="18" height="4.5" rx="2" fill="#8B5E3C" />
+        <path
+            d="M24 11 L 25.3 14 L 28.5 14.2 L 26 16.5 L 27 19.8 L 24 18 L 21 19.8 L 22 16.5 L 19.5 14.2 L 22.7 14 Z"
+            fill="#E76F51"
+        />
+    </svg>
+);
+
+export default TrophyIcon;

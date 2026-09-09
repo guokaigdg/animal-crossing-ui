@@ -1,0 +1,23 @@
+import { SVGProps } from 'react';
+
+export const UmbrellaIcon = (props: SVGProps<SVGSVGElement>) => (
+    <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="#2A2A2A"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <path d="M6 24 C 6 12 42 12 42 24 Z" fill="#E76F51" />
+        <path d="M6 24 L42 24" stroke="#2A2A2A" />
+        <path d="M24 24 L24 40" stroke="#2A2A2A" stroke-width="3" />
+        <path d="M24 40 C 24 44 28 44 28 40" stroke="#2A2A2A" />
+        <path d="M16 24 L16 20" stroke="#2A2A2A" stroke-width="2" />
+        <path d="M32 24 L32 20" stroke="#2A2A2A" stroke-width="2" />
+    </svg>
+);
+
+export default UmbrellaIcon;
