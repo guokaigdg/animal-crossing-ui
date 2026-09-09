@@ -32,8 +32,10 @@ export interface ImageProps extends Omit<
     width?: number | string;
     /** 图片高度 */
     height?: number | string;
-    /** 背景颜色（Card pattern 同款底色，无花纹；'white' 为纯白，默认 white） */
+    /** 背景颜色（Card pattern 同款底色，无花纹；'white' 为纯白，默认 white；仅 variant='bordered' 时生效） */
     color?: ImageColor;
+    /** 相框类型：'default' 卡片大阴影+大圆角（默认），'bordered' 边框柔和阴影+小圆角 */
+    variant?: 'default' | 'bordered';
     /** 是否启用懒加载 */
     lazy?: boolean;
     /** 点击图片弹出大图预览 */
@@ -50,6 +52,7 @@ export const Image: React.FC<ImageProps> = ({
     width,
     height,
     color = 'white',
+    variant = 'default',
     lazy = false,
     preview = true,
     className,
@@ -132,7 +135,7 @@ export const Image: React.FC<ImageProps> = ({
                 role="img"
                 aria-label={alt || '图片加载失败'}
             >
-                <Icon name="page" size={32} />
+                <Icon name="Image" size={32} />
                 <span>图片加载失败</span>
             </span>
         );
@@ -140,7 +143,8 @@ export const Image: React.FC<ImageProps> = ({
 
     const frameCls = classNames(
         styles.image,
-        color !== 'white' && styles[`image-${color}`],
+        variant === 'default' && styles['variant-default'],
+        variant === 'bordered' && color !== 'white' && styles[`image-${color}`],
         loaded && styles.loaded,
         preview && styles.preview,
         className

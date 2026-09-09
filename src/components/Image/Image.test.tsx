@@ -23,9 +23,12 @@ describe('Image', () => {
         expect(frame).toHaveStyle({ width: '200px', height: '120px' });
     });
 
-    it('color 应用对应调色板类名（非 white 时）', () => {
-        const { container } = render(<Image src="photo.png" alt="x" color="app-pink" />);
+    it('color 应用对应调色板类名（非 white 时，仅 bordered 生效）', () => {
+        const { container } = render(<Image src="photo.png" alt="x" color="app-pink" variant="bordered" />);
         expect(container.firstChild).toHaveClass(styles['image-app-pink']);
+        // default 类型不应用色板背景
+        const { container: def } = render(<Image src="photo.png" alt="x" color="app-pink" variant="default" />);
+        expect(def.firstChild).not.toHaveClass(styles['image-app-pink']);
     });
 
     it('未传 color 或 color=white 时不添加调色板类（默认白色）', () => {
@@ -36,9 +39,11 @@ describe('Image', () => {
         expect(white.firstChild).not.toHaveClass(styles['image-default']);
     });
 
-    it('color=default 应用奶油色类', () => {
-        const { container } = render(<Image src="photo.png" alt="x" color="default" />);
+    it('color=default 应用奶油色类（仅 bordered 生效）', () => {
+        const { container } = render(<Image src="photo.png" alt="x" color="default" variant="bordered" />);
         expect(container.firstChild).toHaveClass(styles['image-default']);
+        const { container: def } = render(<Image src="photo.png" alt="x" color="default" variant="default" />);
+        expect(def.firstChild).not.toHaveClass(styles['image-default']);
     });
 
     it('lazy 映射为原生 loading="lazy"', () => {

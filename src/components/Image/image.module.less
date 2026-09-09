@@ -24,6 +24,19 @@
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+// ---------- Frame variant (相框类型) ----------
+// default：新增默认类型，无边框、无内边距、无背景，图片撑满，卡片大阴影 + 18px 大圆角（覆盖 base 样式）
+.variant-default {
+    border: none;
+    padding: 0;
+    background: transparent;
+    border-radius: 12px;
+    box-shadow:
+        0 13px 27px -5px rgba(50, 50, 93, 0.25),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3),
+        0 -6px 16px -6px rgba(0, 0, 0, 0.03);
+}
+
 .img {
     display: block;
     width: 100%;
